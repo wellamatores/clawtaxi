@@ -57,6 +57,9 @@
         .nav-links a:hover {
             color: #00D4FF;
         }
+        .nav-links a.active {
+            color: #00D4FF;
+        }
         .btn-outline {
             border: 1px solid #00D4FF;
             background: transparent;
@@ -83,6 +86,20 @@
         .btn-primary:hover {
             background: #7A5CFF;
             color: white;
+        }
+        .pricing-nav-btn {
+            background: transparent;
+            border: 1px solid #00D4FF;
+            padding: 6px 16px;
+            border-radius: 40px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #00D4FF;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .pricing-nav-btn:hover {
+            background: rgba(0,212,255,0.1);
         }
 
         .hero {
@@ -225,9 +242,6 @@
         .role-matrix {
             margin: 60px 0;
         }
-        .matrix-table {
-            overflow-x: auto;
-        }
 
         .faq {
             margin: 60px 0;
@@ -269,7 +283,8 @@
             margin-top: 24px;
         }
 
-        .footer {
+        /* Footer — единый с index.html и admin.html */
+        .claw-footer {
             border-top: 1px solid #1E3555;
             padding: 32px 0;
             margin-top: 40px;
@@ -280,12 +295,18 @@
             font-size: 13px;
             color: #6C7B92;
         }
-        .footer a {
+        .claw-footer a {
             color: #6C7B92;
             text-decoration: none;
+            transition: 0.2s;
         }
-        .footer a:hover {
+        .claw-footer a:hover {
             color: #00D4FF;
+        }
+        .footer-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
         }
 
         @media (max-width: 800px) {
@@ -302,13 +323,14 @@
     <div class="navbar">
         <div class="logo">🦀 ClawTaxi</div>
         <div class="nav-links">
-            <a href="#">Dashboard</a>
-            <a href="#">Platform</a>
-            <a href="#">Enterprise</a>
-            <a href="#">Docs</a>
-            <a href="pricing.html" style="color:#00D4FF;">Pricing</a>
+            <a href="index.html">Dashboard</a>
+            <a href="admin.html">Admin</a>
+            <a href="pricing.html" class="active">Pricing</a>
+            <a href="https://wellamatores-metaverse.vercel.app/LABS.html" target="_blank">LABS</a>
+            <a href="https://wellamatores-metaverse.vercel.app/TTV_Litho_Prophet.html" target="_blank">TTV Prophet</a>
         </div>
-        <div>
+        <div style="display: flex; gap: 12px;">
+            <a href="pricing.html" class="pricing-nav-btn">💰 Pricing</a>
             <button class="btn-outline" onclick="alert('Demo request')">Book a Demo</button>
             <button class="btn-primary" onclick="alert('Start Free')">Start Free</button>
         </div>
@@ -417,7 +439,7 @@
         </div>
     </div>
 
-    <!-- Матрица ролей по тарифам — ПРЯМО КАК УТВЕРДИЛИ -->
+    <!-- Матрица ролей по тарифам -->
     <div class="role-matrix">
         <div class="section-title">Roles & Permissions by Plan</div>
         <div class="comp-table">
@@ -461,11 +483,18 @@
         </div>
     </div>
 
-    <!-- Footer -->
-    <div class="footer">
-        <div>© ClawTaxi — Autonomous Dispatch Mesh. No vendor lock-in. 🦀</div>
-        <div><a href="#">Documentation</a> · <a href="#">GitHub</a> · <a href="#">LABS</a> · <a href="#">Privacy</a> · <a href="#">Status</a></div>
-    </div>
+    <!-- Footer — единый с index.html и admin.html -->
+    <footer class="claw-footer">
+        <div>🦀 ClawTaxi — Autonomous Dispatch Mesh · No vendor lock‑in</div>
+        <div class="footer-links">
+            <a href="index.html">Dashboard</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="https://wellamatores-metaverse.vercel.app/LABS.html" target="_blank">LABS</a>
+            <a href="https://wellamatores-metaverse.vercel.app/TTV_Litho_Prophet.html" target="_blank">TTV Litho Prophet</a>
+            <a href="https://github.com/wellamatores/clawtaxi" target="_blank">GitHub</a>
+        </div>
+        <div>«Ква»</div>
+    </footer>
 </div>
 
 <script>
