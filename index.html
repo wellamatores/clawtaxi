@@ -104,6 +104,9 @@
 
     .main {
       padding: 0 24px 24px 24px;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
     .header {
@@ -130,7 +133,6 @@
       font-size: 13px;
     }
 
-    /* ССЫЛКА НА ADMIN PANEL */
     .admin-link {
       text-decoration: none;
       color: inherit;
@@ -151,6 +153,23 @@
     .user-menu:hover {
       border-color: var(--accent-cyan);
       background: var(--bg-card-hover);
+      transform: translateY(-1px);
+    }
+
+    .pricing-btn {
+      background: transparent;
+      border: 1px solid var(--accent-cyan);
+      padding: 6px 16px;
+      border-radius: 40px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--accent-cyan);
+      text-decoration: none;
+      transition: 0.2s;
+    }
+
+    .pricing-btn:hover {
+      background: rgba(0, 212, 255, 0.1);
       transform: translateY(-1px);
     }
 
@@ -338,6 +357,35 @@
       font-size: 12px;
     }
 
+    /* Footer styles */
+    .claw-footer {
+      margin-top: 48px;
+      padding: 24px 0;
+      border-top: 1px solid var(--border-primary);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .claw-footer a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: 0.2s;
+    }
+
+    .claw-footer a:hover {
+      color: var(--accent-cyan);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
     @media (max-width: 1200px) {
       .app {
         grid-template-columns: 1fr;
@@ -347,6 +395,18 @@
       }
       .grid-12 {
         grid-template-columns: repeat(6, 1fr);
+      }
+    }
+
+    @media (max-width: 700px) {
+      .header {
+        flex-wrap: wrap;
+        height: auto;
+        gap: 12px;
+        padding: 12px 8px;
+      }
+      .search {
+        width: 100%;
       }
     }
   </style>
@@ -394,12 +454,15 @@
   <main class="main">
     <header class="header">
       <div class="search">🔍 Search tasks, agents, routes... <span style="margin-left: auto;">⌘K</span></div>
-      <a href="admin.html" class="admin-link">
-        <div class="user-menu">
-          <span>Platform Admin</span>
-          <div class="avatar">PA</div>
-        </div>
-      </a>
+      <div style="display: flex; gap: 12px; align-items: center;">
+        <a href="pricing.html" class="pricing-btn">💰 Pricing</a>
+        <a href="admin.html" class="admin-link">
+          <div class="user-menu">
+            <span>Platform Admin</span>
+            <div class="avatar">PA</div>
+          </div>
+        </a>
+      </div>
     </header>
 
     <div class="grid-12">
@@ -504,6 +567,19 @@
         <div class="region-row" style="margin-top: 12px;"><span>✅ All Systems Operational</span></div>
       </div>
     </div>
+
+    <!-- Footer — как на pricing.html -->
+    <footer class="claw-footer">
+      <div>🦀 ClawTaxi — Autonomous Dispatch Mesh · No vendor lock‑in</div>
+      <div class="footer-links">
+        <a href="index.html">Dashboard</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="https://wellamatores-metaverse.vercel.app/LABS.html" target="_blank">LABS</a>
+        <a href="https://wellamatores-metaverse.vercel.app/TTV_Litho_Prophet.html" target="_blank">TTV Litho Prophet</a>
+        <a href="https://github.com/wellamatores/clawtaxi" target="_blank">GitHub</a>
+      </div>
+      <div>«Ква»</div>
+    </footer>
   </main>
 </div>
 
