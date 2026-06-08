@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>ClawTaxi · Platform Admin Dashboard | TDS v1.0 + Elementals</title>
+  <title>ClawTaxi · Platform Admin Dashboard | TDS + Elementals</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -37,10 +37,15 @@
     .nav-item.active { background: linear-gradient(90deg, rgba(0,212,255,0.15), rgba(0,212,255,0.05)); color: var(--text-primary); border-left: 2px solid var(--accent-blue); }
     .nav-item:hover:not(.active) { background: var(--bg-card-hover); }
     .main { display: flex; flex-direction: column; }
-    .header { height: 72px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border-primary); padding: 0 28px; background: var(--bg-primary); }
+    .header { height: 72px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border-primary); padding: 0 28px; background: var(--bg-primary); flex-wrap: wrap; gap: 12px; }
     .search { width: 400px; height: 40px; background: var(--bg-card); border: 1px solid var(--border-primary); border-radius: var(--radius-sm); display: flex; align-items: center; padding: 0 16px; gap: 8px; color: var(--text-muted); font-size: 13px; }
     .search kbd { background: #1E3555; padding: 3px 8px; border-radius: 6px; font-size: 11px; font-family: monospace; }
-    .header-actions { display: flex; align-items: center; gap: 20px; }
+    .header-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .nav-links { display: flex; gap: 20px; align-items: center; }
+    .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 13px; transition: 0.2s; }
+    .nav-links a:hover { color: var(--accent-blue); }
+    .pricing-btn { background: transparent; border: 1px solid var(--accent-blue); padding: 6px 16px; border-radius: 40px; font-size: 13px; font-weight: 500; color: var(--accent-blue); text-decoration: none; transition: 0.2s; }
+    .pricing-btn:hover { background: rgba(0,212,255,0.1); }
     .region-selector { background: var(--bg-card); border: 1px solid var(--border-primary); border-radius: 30px; padding: 6px 16px; font-size: 12px; display: flex; align-items: center; gap: 8px; cursor: default; }
     .notification-bell, .message-center { width: 36px; height: 36px; background: var(--bg-card); border: 1px solid var(--border-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: default; }
     .user-menu { display: flex; align-items: center; gap: 14px; background: var(--bg-card); padding: 6px 14px 6px 18px; border-radius: 40px; border: 1px solid var(--border-primary); }
@@ -48,7 +53,7 @@
     .user-info strong { font-size: 13px; display: block; }
     .user-info span { font-size: 10px; color: var(--accent-blue); }
     .avatar { width: 36px; height: 36px; background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; }
-    .content { padding: 24px 28px; }
+    .content { padding: 24px 28px; flex: 1; }
     .grid-12 { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; }
     .kpi-card { background: var(--bg-card); border: 1px solid var(--border-primary); border-radius: var(--radius-md); padding: 16px; }
     .kpi-title { font-size: 12px; color: var(--text-muted); margin-bottom: 8px; }
@@ -123,11 +128,38 @@
     .chart-bar { flex: 1; background: var(--accent-blue); border-radius: 4px; }
     .donut-placeholder { width: 140px; height: 140px; margin: 0 auto; background: conic-gradient(var(--success) 0% 65%, var(--accent-blue) 65% 80%, var(--warning) 80% 92%, var(--danger) 92% 100%); border-radius: 50%; }
     .activity-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border-primary); font-size: 11px; }
-    .footer { margin-top: 24px; background: var(--bg-secondary); border-top: 1px solid var(--border-primary); padding: 14px 28px; display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); flex-wrap: wrap; gap: 8px; }
+
+    /* Footer — единый как на pricing.html */
+    .claw-footer {
+      margin-top: 24px;
+      padding: 20px 28px;
+      border-top: 1px solid var(--border-primary);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 12px;
+      color: var(--text-muted);
+      background: var(--bg-secondary);
+    }
+    .claw-footer a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: 0.2s;
+    }
+    .claw-footer a:hover {
+      color: var(--accent-blue);
+    }
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
     .badge { padding: 4px 10px; border-radius: 30px; font-size: 11px; }
     .badge-success { background: rgba(0,230,118,0.15); color: var(--success); }
     .badge-warning { background: rgba(255,193,7,0.15); color: var(--warning); }
-    @media (max-width: 1200px) { .app { grid-template-columns: 1fr; } .sidebar { display: none; } .grid-12 { grid-template-columns: repeat(6, 1fr); } }
+    @media (max-width: 1200px) { .app { grid-template-columns: 1fr; } .sidebar { display: none; } .grid-12 { grid-template-columns: repeat(6, 1fr); } .header { height: auto; } }
   </style>
 </head>
 <body>
@@ -147,6 +179,13 @@
     <div class="header">
       <div class="search">🔍 Search agents, routes, tasks, deployments... <kbd>Ctrl+/</kbd></div>
       <div class="header-actions">
+        <div class="nav-links">
+          <a href="index.html">Dashboard</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="https://wellamatores-metaverse.vercel.app/LABS.html" target="_blank">LABS</a>
+          <a href="https://wellamatores-metaverse.vercel.app/TTV_Litho_Prophet.html" target="_blank">TTV Prophet</a>
+        </div>
+        <a href="pricing.html" class="pricing-btn">💰 Pricing</a>
         <div class="region-selector">🌍 US-EAST ▼</div>
         <div class="notification-bell">🔔</div>
         <div class="message-center">💬</div>
@@ -228,9 +267,19 @@
         </div>
       </div>
     </div>
-    <div class="footer">
-      <span>🟢 System Status: Operational</span><span>⏱️ Uptime: 47d 12h 33m</span><span>📦 Version: v2.3.1</span><span>🏗️ Build: 2025.05.28-1427</span><span>🕒 UTC 2025-05-28 14:27:31</span><span>© TerraTrampilleraVerse Holding</span>
-    </div>
+
+    <!-- Footer — единый как на pricing.html -->
+    <footer class="claw-footer">
+      <div>🦀 ClawTaxi — Autonomous Dispatch Mesh · No vendor lock‑in</div>
+      <div class="footer-links">
+        <a href="index.html">Dashboard</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="https://wellamatores-metaverse.vercel.app/LABS.html" target="_blank">LABS</a>
+        <a href="https://wellamatores-metaverse.vercel.app/TTV_Litho_Prophet.html" target="_blank">TTV Litho Prophet</a>
+        <a href="https://github.com/wellamatores/clawtaxi" target="_blank">GitHub</a>
+      </div>
+      <div>«Ква»</div>
+    </footer>
   </main>
 </div>
 
@@ -261,7 +310,6 @@
   ];
 
   let activeSlide = 0;
-  const trackCarousel = document.getElementById('carouselTrack');
   let elementalsRef = [];
 
   function updateElementalsVisibility() {
@@ -269,7 +317,6 @@
       const elemDiv = el.div;
       if (parseInt(elemDiv.getAttribute('data-slide')) === activeSlide) {
         elemDiv.style.display = 'block';
-        // маленькая анимация при появлении
         elemDiv.style.transform = 'scale(0.9)';
         setTimeout(() => { if(elemDiv) elemDiv.style.transform = 'scale(1)'; }, 50);
       } else {
@@ -343,6 +390,12 @@
   }
   monitorSlideChange();
   updateElementalsVisibility();
+
+  console.log('[ClawTaxi] Elementals deployed: Ignis, Aqua, Sylva, Zapp, Rocky — hungry and playful');
+  console.log('[ClawTaxi] OMEGA Clearance Active | Full System Control');
+</script>
+</body>
+</html>
 
   console.log('[ClawTaxi] Elementals deployed: Ignis, Aqua, Sylva, Zapp, Rocky — hungry and playful');
   console.log('[ClawTaxi] OMEGA Clearance Active | Full System Control');
